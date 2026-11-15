@@ -1,6 +1,6 @@
 class Fabrique_de_meubles(Usine):
-    def __init__(self,prix):
-        super().__init__("Fabrique de meubles",3)
+    def __init__(self,prix:int,numero:list):
+        super().__init__("Fabrique de meubles",3,[8])
     
     @property
     def nom(self):

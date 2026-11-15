@@ -1,6 +1,6 @@
 class Marche_de_legumes(Tomate):
-    def __init__(self,prix):
-        super().__init__("Marché de légumes",2)
+    def __init__(self,prix:int,numero:list):
+        super().__init__("Marché de légumes",2,[11,12])
     
     @property
     def nom(self):

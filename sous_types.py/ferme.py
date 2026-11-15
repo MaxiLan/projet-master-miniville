@@ -1,6 +1,6 @@
 class Ferme(Vache):
-    def __init__(self,prix):
-        super().__init__("Ferme",1)
+    def __init__(self,prix:int,numero:list):
+        super().__init__("Ferme",1,[2])
     
     @property
     def nom(self):
