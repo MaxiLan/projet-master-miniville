@@ -5,6 +5,18 @@ class Carte(ABC):
         self._type=typ
         self._prix=prix
 
+    @property
+    def nom(self):
+        return self._nom
+    
+    @property
+    def typ(self):
+        return self._typ
+
+    @property
+    def prix(self):
+        return self._prix 
+        
     @abstractmethod
     def effet(self):
         pass
