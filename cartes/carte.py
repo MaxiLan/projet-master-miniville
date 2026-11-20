@@ -13,7 +13,7 @@ class Carte(ABC):
         return self._nom
 
     @property
-    def typ(self):
+    def type(self):
         return self._type
 
     @property

@@ -1,20 +1,44 @@
 class Joueur:
-    def __init__(self, nom: str, argent: int):
-        self._nom = nom
-        self._argent = 3
-        self._liste_cartes = []
-        self._nb_de
+    def __init__(self, id: int):
+        self._id = id
+        self.liste_cartes = []
+        self.piece_1 = 0
+        self.piece_5 = 0
+        self.piece_10 = 0
 
-    def agir(self):
-        n = de.lancer()
+    @property
+    def id(self):
+        return self._id
 
-    def recevoir(self, somme: int):
-        self._argent += somme
+    @property
+    def argent(self):
+        return self.piece_1 + 5 * self.piece_5 + 10 * self.piece_10
+
+    def recevoir(self, somme: list):
+        self.piece_1 += somme[0]
+        self.piece_5 += somme[1]
+        self.piece_10 += somme[2]
 
     def payer(self, joueur, somme: int):
-        if self._argent <= somme:
-            joueur.recevoir(self._argent)
-            self._argent = 0
+        p10 = somme // 10
+        p10 = min(p10, self.piece_10)
+        reste = somme - 10 * p10
 
-        joueur.recevoir(somme)
-        self._argent -= somme
+        p5 = reste // 5
+        p5 = min(p5, self.piece_5)
+        reste = reste - 5 * p5
+
+        p1 = reste
+        p1 = min(p1, self.piece_1)
+
+        self.piece_10 -= p10
+        self.piece_5 -= p5
+        self.piece_1 -= p1
+
+        joueur.recevoir([p1, p5, p10])
+
+    def ajouter_carte(self, carte):
+        self.liste_cartes.append(carte)
+
+    def dessine(self):
+        pass
