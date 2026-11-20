@@ -6,4 +6,4 @@ class Foret(Roue):
         super().__init__("Roue", 3, [5])
     
     def effet(self, joueur, liste_joueurs, banque, reserve):
-        banque.payer(joueur, 1)
+        banque.payer(joueur_p, 1)

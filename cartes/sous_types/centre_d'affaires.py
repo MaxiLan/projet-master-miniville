@@ -6,4 +6,5 @@ class Centre_d_affaires(Special):
         super().__init__("Centre d'affaires", 8, [6])
 
     def effet(self, joueur, liste_joueurs, banque, reserve):
-        #faire une méthode pour savoir qui joue ?
+        for x in joueur._liste_cartes:
+            #comment choisir un autre joueur ? au hasard?
