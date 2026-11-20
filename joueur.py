@@ -3,7 +3,11 @@ class Joueur:
         self._nom = nom
         self._argent = 3
         self._liste_cartes = []
-        self._nb_de
+        self._nb_de=1
+
+    @property
+    def nb_de(self):
+        return self._nb_de
 
     def agir(self):
         n = de.lancer()

@@ -8,5 +8,5 @@ class Centre_commercial(Monument):
     def effet(self, joueur, liste_joueurs, banque, reserve):
         for x in liste_joueurs:
             for y in x._liste_cartes:
-                if y._typ=="Tasse" or "Brioche":
+                if y.typ=="Tasse" or y.typ=="Brioche":
                     banque.payer(x,1)
