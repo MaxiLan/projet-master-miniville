@@ -9,3 +9,5 @@ class Centre_d_affaires(Special):
         for carte in joueur_p.liste_cartes:
             pass
             # comment choisir un autre joueur ? au hasard?
+            # ajout de joueur_c : joueur choisi :
+            # demander de rentrer le nom du joueur choisi ?
