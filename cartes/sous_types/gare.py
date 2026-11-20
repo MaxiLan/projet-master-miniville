@@ -2,11 +2,11 @@ from monument import Monument
 
 
 class Gare(Monument):
-    def __init__(self, prix):
+    def __init__(self):
         super().__init__("Gare", 4)
 
-    def effet(self, joueur, liste_joueurs, banque, reserve):
-        for x in liste_joueurs:
-            for y in x._liste_cartes:
-                if y.nom="Gare":
-                    x.nb_de=2
+    def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
+        for joueur in liste_joueurs:
+            for carte in joueur.liste_cartes:
+                if carte.nom == "Gare":
+                    joueur.nb_de = 2

@@ -49,7 +49,10 @@ class Jeu:
             if de in carte.numeros:
                 carte.effet(joueur, self.joueurs, self.banque, self.reserve)
 
+        # regarder chez les autres joueurs si l'effet est activable
+        """
         for j in joueurs_restants:
             for carte in j.liste_cartes:
                 if de in carte.numeros:
                     carte.effet(joueur, self.joueurs, self.banque, self.reserve)
+        """
