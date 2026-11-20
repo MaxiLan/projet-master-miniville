@@ -1,3 +1,6 @@
+from carte import Carte
+
+
 class Ble(Carte):
-    def __init__(self,nom:str,prix:int):
-        super().__init__(nom,"Ble",prix)
+    def __init__(self, nom: str, prix: int, numeros: list):
+        super().__init__(nom, "Ble", prix, numeros)

@@ -1,11 +1,11 @@
 class Joueur:
-    def __init__(self,nom:str,argent:int):
-        self._nom=nom
-        self._argent=3
-        self._liste_cartes=[]
+    def __init__(self, nom:str, argent:int):
+        self._nom = nom
+        self._argent = 3
+        self._liste_cartes = []
         
     def agir(self):
-        n=de.lancer()
+        n = de.lancer()
 
     def payer(self,somme:int):
         if self._argent<=somme:
