@@ -8,3 +8,6 @@ class Centre_d_affaires(Special):
     def effet(self, joueur, liste_joueurs, banque, reserve):
         for x in joueur._liste_cartes:
             #comment choisir un autre joueur ? au hasard?
+            #ajout de joueur_c : joueur choisi : 
+            #demander de rentrer le nom du joueur choisi ?
+            

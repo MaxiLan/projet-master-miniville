@@ -8,7 +8,7 @@ class Boulangerie(Brioche):
     def __init__(self, prix: int, numero: list):
         super().__init__("Boulangerie", 1, [2, 3])
 
-    def effet(self, joueur,joueur_p, liste_joueurs, banque, reserve):
+    def effet(self, joueur, joueur_p, liste_joueurs, banque, reserve):
         for y in joueur._liste_cartes:
-            if y.nom=="Boulangerie"
+            if y.nom=="Boulangerie":
                 banque.payer(joueur, 1)

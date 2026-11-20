@@ -5,5 +5,5 @@ class Champs_de_ble(Ble):
     def __init__(self, prix: int, numero: list):
         super().__init__("Champs de blé", 1, [1])
 
-    def effet(self, joueur,joueur_p, liste_joueurs, banque, reserve):
+    def effet(self, joueur, joueur_p, liste_joueurs, banque, reserve):
         banque.payer(joueur_p, 1)

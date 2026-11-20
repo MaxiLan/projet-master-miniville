@@ -12,6 +12,10 @@ class Joueur:
     def agir(self):
         n = de.lancer()
 
+    def relancer(self,joueur,c=bool):
+        if c==True:
+            agir() #pas sure de ça
+
     def recevoir(self, somme: int):
         self._argent += somme
 
