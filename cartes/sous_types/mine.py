@@ -1,15 +1,6 @@
+from ..roue import Roue
+
+
 class Mine(Roue):
-    def __init__(self,prix:int,numero:list):
-        super().__init__("Mine",6,[9])
-    
-    @property
-    def nom(self):
-        return self._nom
-    
-    @property
-    def typ(self):
-        return self._typ
-        
-    @property
-    def prix(self):
-        return self._prix
+    def __init__(self, prix: int, numero: list):
+        super().__init__("Mine", 6, [9])

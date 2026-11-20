@@ -25,5 +25,11 @@ class Carte(ABC):
         return self._numeros
 
     @abstractmethod
-    def effet(self):
+    def effet(self, joueur, liste_joueurs, banque, reserve):
+        """Execute l'effet de la carte
+        -joueur: joueur qui possède la carte
+        -liste_joueurs: liste des joueurs de la partie
+        -banque: Banque de la partie
+        -reserve: Réserve de la partie
+        """
         pass
