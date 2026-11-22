@@ -1,4 +1,4 @@
-from spécial import Special
+from cartes.sous_types.spécial import Special
 
 
 class Chaine_de_television(Special):

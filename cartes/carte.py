@@ -7,6 +7,7 @@ class Carte(ABC):
         self._type = type
         self._prix = prix
         self._numeros = numeros
+        self._activable = False
 
     @property
     def nom(self):
@@ -23,6 +24,10 @@ class Carte(ABC):
     @property
     def numeros(self):
         return self._numeros
+
+    @property
+    def activable(self):
+        return self._activable
 
     @abstractmethod
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):

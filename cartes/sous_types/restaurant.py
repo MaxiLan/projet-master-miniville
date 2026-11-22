@@ -1,4 +1,4 @@
-from ..tasse import Tasse
+from cartes.tasse import Tasse
 
 
 class Restaurant(Tasse):
@@ -6,6 +6,9 @@ class Restaurant(Tasse):
         super().__init__("Restaurant", 3, [9, 10])
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
-        # joueur qui lance dé donne 2 pièces
-        # Regarder dans la liste des joueurs, qui joue : joueur2
-        joueur_t.payer(joueur_p, 2)
+        for monument in joueur_p:
+            if monument.nom == "Centre commercial" and monument.est_construit:
+                joueur_t.payer(joueur_p, 3)
+            else:
+                joueur_t.payer(joueur_p, 2)
+            break

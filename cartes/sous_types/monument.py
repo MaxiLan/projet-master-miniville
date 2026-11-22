@@ -1,4 +1,4 @@
-from ..antenne import Antenne
+from cartes.antenne import Antenne
 
 
 class Monument(Antenne):

@@ -31,3 +31,4 @@ class Banque:
         self.piece_1 -= p1
 
         joueur.recevoir([p1, p5, p10])
+        return somme - reste  # on renvoie le vrai montant payé

@@ -1,5 +1,3 @@
-import random
-
 from banque import Banque
 from cartes.sous_types.boulangerie import Boulangerie
 from cartes.sous_types.centre_commercial import Centre_commercial
@@ -27,32 +25,35 @@ class Jeu:
             self.banque.payer(joueur, 3)
 
             # cartes de départ
-            joueur.liste_cartes.append(
+            joueur.monuments = [
                 Gare(),
                 Centre_commercial(),
                 Tour_radio(),
                 Parc_d_attractions(),
-                Champs_de_ble(),
-                Boulangerie(),
-            )
+            ]
+            joueur.cartes = [Champs_de_ble(), Boulangerie()]
             self.joueurs.append(joueur)
 
     def jouer(self):
+        """Réalise un tour de jeu"""
         joueur = self.joueurs[self.joueur_courant]
         joueurs_restants = [j for j in self.joueurs if j.id != self.joueur_courant]
 
-        print(f"Le joueur {self.joueur_courant+1} lance son dé...")
-        de = random.randint(1, 6)
-        print(f"Le résultat est : {de}")
+        print("-------------------------------------------------")
+        print(f"Le joueur {self.joueur_courant+1} joue son tour")
+        joueur.etat()
 
-        for carte in joueur.liste_cartes:
-            if de in carte.numeros:
-                carte.effet(joueur, self.joueurs, self.banque, self.reserve)
+        de = joueur.tour(self.banque, self.reserve, joueurs_restants)
 
-        # regarder chez les autres joueurs si l'effet est activable
-        """
-        for j in joueurs_restants:
-            for carte in j.liste_cartes:
-                if de in carte.numeros:
-                    carte.effet(joueur, self.joueurs, self.banque, self.reserve)
-        """
+        # le joueur rejoue avec le parc d'attractions
+        if de % 2 == 0:
+            for monument in joueur.monuments:
+                if monument.nom == "Parc d'attractions" and monument.est_construit:
+                    print("(Parc d'attractions) Vous rejouez !")
+                    joueur.tour(self.banque, self.reserve, joueurs_restants)
+                    break
+
+        input("----> Continuer [entrée] <----")
+
+        self.est_fini = all([monument.est_construit for monument in joueur.monuments])
+        self.joueur_courant = (self.joueur_courant + 1) % self.nb_joueurs

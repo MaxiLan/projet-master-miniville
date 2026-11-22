@@ -1,4 +1,4 @@
-from spécial import Special
+from cartes.sous_types.spécial import Special
 
 
 class Centre_d_affaires(Special):

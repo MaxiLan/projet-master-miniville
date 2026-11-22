@@ -1,4 +1,4 @@
-from carte import Carte
+from cartes.carte import Carte
 
 
 class Tasse(Carte):

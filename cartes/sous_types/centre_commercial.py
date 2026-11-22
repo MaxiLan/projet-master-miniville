@@ -1,4 +1,4 @@
-from monument import Monument
+from cartes.sous_types.monument import Monument
 
 
 class Centre_commercial(Monument):

@@ -1,4 +1,4 @@
-from ..usine import Usine
+from cartes.usine import Usine
 
 
 class Fabrique_de_meubles(Usine):
