@@ -8,4 +8,5 @@ class Verger(Ble):
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         # à chaque tour, le joueur reçoit 3 de la banque
-        banque.payer(joueur_p, 3)
+        res = banque.payer(joueur_p, 3)
+        print(f"[Joueur {joueur_p.id+1}] (Verger) La banque vous donne {res}")

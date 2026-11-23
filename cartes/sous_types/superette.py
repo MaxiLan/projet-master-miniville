@@ -8,7 +8,9 @@ class Superette(Brioche):
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         for monument in joueur_p.monuments:
             if monument.nom == "Centre commercial" and monument.est_construit:
-                banque.payer(joueur_p, 4)
+                res = banque.payer(joueur_p, 4)
+                print(f"[Joueur {joueur_p.id+1}] (Supérette) La banque vous donne {res}")
             else:
-                banque.payer(joueur_p, 3)
+                res = banque.payer(joueur_p, 3)
+                print(f"[Joueur {joueur_p.id+1}] (Supérette) La banque vous donne {res}")
             break

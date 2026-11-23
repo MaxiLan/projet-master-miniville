@@ -34,7 +34,7 @@ class Carte(ABC):
         """Execute l'effet de la carte
         -joueur_t: joueur dont c'est le tour
         -joueur_p: joueur qui possède la carte
-        -liste_joueurs: liste des joueurs de la partie
+        -liste_joueurs: liste des joueurs de la partie, sans le joueur qui joue.
         -banque: Banque de la partie
         -reserve: Réserve de la partie
         """

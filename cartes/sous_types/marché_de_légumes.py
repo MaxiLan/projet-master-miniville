@@ -11,5 +11,6 @@ class Marche_de_legumes(Tomate):
         for carte in joueur_p.cartes:
             if carte.type == "Blé":
                 s += 2
-        banque.payer(joueur_p, s)
+        res = banque.payer(joueur_p, s)
+        print(f"[Joueur {joueur_p.id+1}] (Marché de fruits et légumes) La banque vous donne {res}")
 

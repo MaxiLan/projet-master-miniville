@@ -8,4 +8,5 @@ class Mine(Roue):
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         # à chaque tour, banque paye 5 pièces
-        banque.payer(joueur_p, 5)
+        res = banque.payer(joueur_p, 5)
+        print(f"[Joueur {joueur_p.id+1}] (Mine) La banque vous donne {res}")

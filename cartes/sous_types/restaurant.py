@@ -8,7 +8,10 @@ class Restaurant(Tasse):
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         for monument in joueur_p.monuments:
             if monument.nom == "Centre commercial" and monument.est_construit:
-                joueur_t.payer(joueur_p, 3)
+                res = joueur_t.payer(joueur_p, 3)
+                print(f"[Joueur {joueur_p.id+1}] (Restaurant) Le joueur {joueur_t._id+1} vous donne {res}")
             else:
-                joueur_t.payer(joueur_p, 2)
+                res = joueur_t.payer(joueur_p, 2)
+                print(f"[Joueur {joueur_p.id+1}] (Restaurant) Le joueur {joueur_t._id+1} vous donne {res}")
+                
             break
