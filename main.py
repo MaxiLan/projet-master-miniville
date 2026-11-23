@@ -4,11 +4,11 @@ print("Une nouvelle partie commence...")
 nb_joueurs = 4  # int(input("Nombre de joueurs (entre 2 et 4): "))
 
 jeu = Jeu(nb_joueurs)
-i = 1  # nombre limité de tours pour l'instant
+# i = 1 # nombre limité de tours pour l'instant
 
-while not jeu.est_fini and i <= 8:
+while not jeu.est_fini:  # and i <= 8:
     jeu.jouer()
-    i += 1
+    # i += 1
 
 
 ### Tests

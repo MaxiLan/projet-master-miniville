@@ -3,7 +3,7 @@ from cartes.brioche import Brioche
 
 class Superette(Brioche):
     def __init__(self):
-        super().__init__("Superette", 4, [4])
+        super().__init__("Supérette", 4, [4])
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         for monument in joueur_p:

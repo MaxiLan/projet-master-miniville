@@ -2,19 +2,16 @@ from cartes.tomate import Tomate
 
 
 class Marche_de_legumes(Tomate):
-    def __init__(self, prix: int, numero: list):
-        super().__init__("Marché de légumes", 2, [11, 12])
+    def __init__(self):
+        super().__init__("Marché de fruits et légumes", 2, [11, 12])
 
-    def effet(self, joueur, joueur_p, liste_joueurs, banque, reserve):
+    def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         # Pendant le tour du joueur, la banque paye 2*nbr d'établissements blé que le joueur possède
-        if (
-            joueur._tour.nom == joueur.nom
-        ):  # Methode dans jeu pour savoir à qui c'est le tour
-            for y in joueur._listes_cartes:  # est-ce obligé de mettre ça ? *
-                k = 0
-                if y.type == Ble:
-                    k += 1
-            banque.payer(joueur_p, 2 * k)
+        s = 0
+        for carte in joueur_p.cartes:
+            if carte.type == "Blé":
+                s += 2
+        banque.payer(joueur_p, s)
 
 
 # car si dans la classe Jeu, on active les effets

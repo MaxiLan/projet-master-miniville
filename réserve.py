@@ -1,20 +1,47 @@
+from cartes.sous_types.boulangerie import Boulangerie
+from cartes.sous_types.café import Cafe
+from cartes.sous_types.centre_d_affaires import Centre_d_affaires
+from cartes.sous_types.champs_de_blé import Champs_de_ble
+from cartes.sous_types.chaîne_de_télévision import Chaine_de_television
+from cartes.sous_types.fabrique_de_meubles import Fabrique_de_meubles
+from cartes.sous_types.ferme import Ferme
+from cartes.sous_types.forêt import Foret
+from cartes.sous_types.fromagerie import Fromagerie
+from cartes.sous_types.marché_de_légumes import Marche_de_legumes
+from cartes.sous_types.mine import Mine
+from cartes.sous_types.restaurant import Restaurant
+from cartes.sous_types.stade import Stade
+from cartes.sous_types.superette import Superette
+from cartes.sous_types.verger import Verger
+
+
 class Reserve:
     def __init__(self):
-        self.champ = 6
-        self.ferme = 6
-        self.boulangerie = 6
-        self.cafe = 6
-        self.superette = 6
-        self.foret = 6
-        self.centre_affaires = 4
-        self.stade = 4
-        self.chaine = 4
-        self.fromagerie = 6
-        self.fabrique = 6
-        self.mine = 6
-        self.restaurant = 6
-        self.verger = 6
-        self.marche = 6
+        # effectif de chaque carte dans la pioche/réserve
+        self.cartes = [
+            [Champs_de_ble(), 6],
+            [Ferme(), 6],
+            [Boulangerie(), 6],
+            [Cafe(), 6],
+            [Superette(), 6],
+            [Foret(), 6],
+            [Centre_d_affaires(), 4],
+            [Stade(), 4],
+            [Chaine_de_television(), 4],
+            [Fromagerie(), 6],
+            [Fabrique_de_meubles(), 6],
+            [Mine(), 6],
+            [Restaurant(), 6],
+            [Verger(), 6],
+            [Marche_de_legumes(), 6],
+        ]
+
+    def etat(self):
+        print("Cartes de la réserve :")
+        s = ""
+        for carte in self.cartes:
+            s += f"- [{carte[1]}] {carte[0].nom} ${carte[0].prix};\n"
+        print(s)
 
     def dessine(self):
         pass

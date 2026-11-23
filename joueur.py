@@ -1,3 +1,4 @@
+import copy
 import random
 import time
 
@@ -24,7 +25,11 @@ class Joueur:
         self.piece_5 += somme[1]
         self.piece_10 += somme[2]
 
-    def payer(self, joueur, somme: int):
+    def payer(self, entite, somme: int):
+        """Le joueur paye la banque ou un joueur
+        -entite: désigne la banque ou un autre joueur
+        -somme: somme à payer
+        """
         p10 = somme // 10
         p10 = min(p10, self.piece_10)
         reste = somme - 10 * p10
@@ -41,7 +46,7 @@ class Joueur:
         self.piece_5 -= p5
         self.piece_1 -= p1
 
-        joueur.recevoir([p1, p5, p10])
+        entite.recevoir([p1, p5, p10])
         return somme - reste  # on renvoie le vrai montant payé
 
     def ajouter_carte(self, carte):
@@ -49,30 +54,34 @@ class Joueur:
 
     def etat(self):
         print("Voici votre état")
-        print(f"Argent : {self.argent}")
+        print(f"<Argent> : {self.argent}")
 
         s = ""
         for monument in self.monuments:
             construit = "" if monument.est_construit else "pas "
-            s += f"{monument.nom} ({construit}construit); "
+            s += f"{monument.nom} {monument.prix}$ ({construit}construit); "
 
-        print(f"Monuments : {s}")
+        print(f"<Monuments> : {s}")
 
         s = ""
         for carte in self.cartes:
             s += f"{carte.nom}; "
-        print(f"Cartes : {s}")
+        print(f"<Cartes> : {s}")
 
     def lancer(self):
         de = 0
         nb_des = 1
+        print("\n")
 
         for monument in self.monuments:
             if monument.nom == "Gare" and monument.est_construit:
                 nb_des = 2
 
         if nb_des == 2:
-            if input("(Gare) Vous avez 2 dés. Voulez-vous lancer les 2 ? [y/n]") == "y":
+            if (
+                input("(Gare) Vous avez 2 dés. Voulez-vous lancer les deux ? [y/n] ")
+                == "y"
+            ):
                 print("Vous lancez 2 dés...")
                 time.sleep(1)
                 de1 = random.randint(1, 6)
@@ -81,6 +90,11 @@ class Joueur:
                 print(f"Le deuxième lancer donne {de2}")
                 de = de1 + de2
                 print(f"Le total est donc {de}")
+            else:
+                print("Vous lancez un dé...")
+                time.sleep(1)
+                de = random.randint(1, 6)
+                print(f"Le résultat est {de}")
         else:
             print("Vous lancez un dé...")
             time.sleep(1)
@@ -96,7 +110,7 @@ class Joueur:
         # la tour radio permet de relancer les dés
         for monument in self.monuments:
             if monument.nom == "Tour radio" and monument.est_construit:
-                if input("(Tour radio) Voulez-vous relancer vos dés ? [y/n]") == "y":
+                if input("(Tour radio) Voulez-vous relancer vos dés ? [y/n] ") == "y":
                     de = self.lancer()
                     break
 
@@ -111,7 +125,57 @@ class Joueur:
                 if de in carte.numeros and carte.activable:
                     carte.effet(self, j, joueurs_restants, banque, reserve)
 
-        return de
+        # choix des monuments/cartes
+        continuer = True
+
+        while (
+            continuer
+            and input("Voulez-vous construire un de vos monuments ? [y/n] ") == "y"
+        ):
+            nom = input("Entrez le choix du monument (nom du monument) : ")
+            cpt = 0
+            for monument in self.monuments:
+                if nom == monument.nom:
+                    if self.argent >= monument.prix:
+                        monument.est_construit = True
+                        self.payer(banque, monument.prix)
+                        print(f"Vous avez construit le monument : {nom}")
+                        continuer = False
+                        break
+                    else:
+                        print("Vous n'avez pas assez d'argent")
+                        break
+                cpt += 1
+            if cpt == 4:
+                print("Ce monument n'existe pas")
+
+        while continuer and input("Voulez-vous acheter un bâtiment ? [y/n] ") == "y":
+            reserve.etat()
+            print("\n")
+            nom = input("Entrez le choix du bâtiment (nom de la carte) : ")
+            cpt = 0
+            for carte in reserve.cartes:
+                if nom == carte[0].nom:
+                    if self.argent >= carte[0].prix:
+                        if carte[1] > 0:
+                            self.payer(banque, carte[0].prix)
+                            carte[1] -= 1
+                            # on ajoute une copie de la carte au joueur
+                            self.ajouter_carte(copy.deepcopy(carte[0]))
+                            print(f"Vous avez acheté le bâtiment : {nom}")
+                            continuer = False
+                            break
+                        else:
+                            print("Cette carte est épuisée")
+                            break
+                    else:
+                        print("Vous n'avez pas assez d'argent")
+                        break
+                cpt += 1
+            if cpt == len(reserve.cartes):
+                print("Ce bâtiment n'existe pas")
+
+        return de  # renvoie la valeur du dé pour savoir si le joueur rejoue
 
     def dessine(self):
         pass

@@ -1,3 +1,5 @@
+import time
+
 from banque import Banque
 from cartes.sous_types.boulangerie import Boulangerie
 from cartes.sous_types.centre_commercial import Centre_commercial
@@ -39,8 +41,8 @@ class Jeu:
         joueur = self.joueurs[self.joueur_courant]
         joueurs_restants = [j for j in self.joueurs if j.id != self.joueur_courant]
 
-        print("-------------------------------------------------")
-        print(f"Le joueur {self.joueur_courant+1} joue son tour")
+        print(f"----------Le joueur {self.joueur_courant+1} joue son tour----------")
+        time.sleep(1)
         joueur.etat()
 
         de = joueur.tour(self.banque, self.reserve, joueurs_restants)
@@ -53,7 +55,7 @@ class Jeu:
                     joueur.tour(self.banque, self.reserve, joueurs_restants)
                     break
 
-        input("----> Continuer [entrée] <----")
+        input("> Continuer [entrée] <")
 
         self.est_fini = all([monument.est_construit for monument in joueur.monuments])
         self.joueur_courant = (self.joueur_courant + 1) % self.nb_joueurs
