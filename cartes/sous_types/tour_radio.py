@@ -10,5 +10,3 @@ class Tour_radio(Monument):
             #joueur.relancer(c)
         pass
 
-
-# On choisit de relancer ou non avec c
