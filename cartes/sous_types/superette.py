@@ -6,7 +6,7 @@ class Superette(Brioche):
         super().__init__("Supérette", 4, [4])
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
-        for monument in joueur_p:
+        for monument in joueur_p.monuments:
             if monument.nom == "Centre commercial" and monument.est_construit:
                 banque.payer(joueur_p, 4)
             else:

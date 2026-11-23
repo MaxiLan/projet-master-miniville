@@ -4,6 +4,13 @@ from banque import Banque
 from cartes.sous_types.boulangerie import Boulangerie
 from cartes.sous_types.centre_commercial import Centre_commercial
 from cartes.sous_types.champs_de_blé import Champs_de_ble
+
+from cartes.sous_types.mine import Mine
+from cartes.sous_types.restaurant import Restaurant
+from cartes.sous_types.stade import Stade
+from cartes.sous_types.superette import Superette
+from cartes.sous_types.verger import Verger
+
 from cartes.sous_types.gare import Gare
 from cartes.sous_types.parc_d_attractions import Parc_d_attractions
 from cartes.sous_types.tour_radio import Tour_radio
@@ -33,7 +40,7 @@ class Jeu:
                 Tour_radio(),
                 Parc_d_attractions(),
             ]
-            joueur.cartes = [Champs_de_ble(), Boulangerie()]
+            joueur.cartes = [Champs_de_ble(), Boulangerie(),Mine(),Restaurant(),Stade(),Superette(),Tour_radio(),Verger()]
             self.joueurs.append(joueur)
 
     def jouer(self):

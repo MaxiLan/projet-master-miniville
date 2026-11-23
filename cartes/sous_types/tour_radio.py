@@ -6,8 +6,9 @@ class Tour_radio(Monument):
         super().__init__("Tour radio", 22)
 
     def effet(self, c: bool, joueur_t, joueur_p, liste_joueurs, banque, reserve):
-        if joueur._tour.nom == joueur.nom:
-            joueur.relancer(c)
+        #if joueur._tour.nom == joueur.nom:
+            #joueur.relancer(c)
+        pass
 
 
 # On choisit de relancer ou non avec c
