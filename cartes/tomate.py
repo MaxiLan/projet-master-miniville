@@ -1,6 +1,8 @@
+from abc import ABC
+
 from cartes.carte import Carte
 
 
-class Tomate(Carte):
+class Tomate(Carte, ABC):
     def __init__(self, nom: str, prix: int, numeros: list):
         super().__init__(nom, "Tomate", prix, numeros)
