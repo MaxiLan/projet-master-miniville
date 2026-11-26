@@ -1,4 +1,4 @@
-from cartes.blé import Ble
+from cartes.ble import Ble
 
 
 class Champs_de_ble(Ble):
@@ -8,4 +8,4 @@ class Champs_de_ble(Ble):
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
         res = banque.payer(joueur_p, 1)
-        print(f"[Joueur {joueur_p.id+1}] (Champs de blé) La banque vous donne {res}")
+        print(f"[Joueur {joueur_p.id+1}] ({self.nom}) La banque vous donne {res}")

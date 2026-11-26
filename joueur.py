@@ -32,24 +32,24 @@ class Joueur:
 
     def etat(self):
         print("Voici votre état")
-        print(f"<Argent> : {self.argent}")
+        print(f"<Argent> : {self.argent}$")
 
         s = ""
         for monument in self.monuments:
             construit = "" if monument.est_construit else "pas "
-            s += f"{monument.nom} {monument.prix}$ ({construit}construit); "
+            s += f"- {monument.nom} {monument.prix}$ ({construit}construit); \n"
 
-        print(f"<Monuments> : {s}")
+        print(f"<Monuments> : \n{s}")
 
         s = ""
         for carte in self.cartes:
-            s += f"{carte.nom}; "
-        print(f"<Cartes> : {s}")
+            s += f"- {carte.nom}; \n"
+        print(f"<Cartes> : \n{s}")
 
     def lancer(self):
         de = 0
         nb_des = 1
-        print("\n")
+        double = False
 
         for monument in self.monuments:
             if monument.nom == "Gare" and monument.est_construit:
@@ -68,6 +68,8 @@ class Joueur:
                 print(f"Le deuxième lancer donne {de2}")
                 de = de1 + de2
                 print(f"Le total est donc {de}")
+                if de1 == de2:
+                    double = True
             else:
                 print("Vous lancez un dé...")
                 time.sleep(1)
@@ -79,11 +81,11 @@ class Joueur:
             de = random.randint(1, 6)
             print(f"Le résultat est {de}")
 
-        return de
+        return de, double
 
     def tour(self, banque, reserve, joueurs_restants):
         """Réalise un tour du joueur"""
-        de = self.lancer()
+        de, double = self.lancer()
 
         # la tour radio permet de relancer les dés
         for monument in self.monuments:
@@ -94,7 +96,7 @@ class Joueur:
 
         # active les effets des cartes du joueur
         for carte in self.cartes:
-            if de in carte.numeros:
+            if de in carte.numeros and carte.type != "Tasse":
                 carte.effet(self, self, joueurs_restants, banque, reserve)
 
         # regarder chez les autres joueurs si l'effet est activable
@@ -102,6 +104,8 @@ class Joueur:
             for carte in j.cartes:
                 if de in carte.numeros and carte.activable:
                     carte.effet(self, j, joueurs_restants, banque, reserve)
+
+        print(f"\nVous avez maintenant {self.argent}$ \n")
 
         # choix des monuments/cartes
         continuer = True
@@ -118,6 +122,7 @@ class Joueur:
                         monument.est_construit = True
                         self.payer(banque, monument.prix)
                         print(f"Vous avez construit le monument : {nom}")
+                        print(f"\nVous avez maintenant {self.argent}$ \n")
                         continuer = False
                         break
                     else:
@@ -127,9 +132,9 @@ class Joueur:
             if cpt == 4:
                 print("Ce monument n'existe pas")
 
-        while continuer and input("Voulez-vous acheter un bâtiment ? [y/n] ") == "y":
+        if continuer:
             reserve.etat()
-            print("\n")
+        while continuer and input("Voulez-vous acheter un bâtiment ? [y/n] ") == "y":
             nom = input("Entrez le choix du bâtiment (nom de la carte) : ")
             cpt = 0
             for carte in reserve.cartes:
@@ -141,6 +146,7 @@ class Joueur:
                             # on ajoute une copie de la carte au joueur
                             self.ajouter_carte(copy.deepcopy(carte[0]))
                             print(f"Vous avez acheté le bâtiment : {nom}")
+                            print(f"\nVous avez maintenant {self.argent}$ \n")
                             continuer = False
                             break
                         else:
@@ -153,7 +159,7 @@ class Joueur:
             if cpt == len(reserve.cartes):
                 print("Ce bâtiment n'existe pas")
 
-        return de  # renvoie la valeur du dé pour savoir si le joueur rejoue
+        return double  # renvoie un booléen pour savoir si le joueur rejoue
 
     def dessine(self):
         pass

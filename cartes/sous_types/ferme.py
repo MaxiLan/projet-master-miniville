@@ -7,4 +7,5 @@ class Ferme(Vache):
         self._activable = True
 
     def effet(self, joueur_t, joueur_p, liste_joueurs, banque, reserve):
-        banque.payer(joueur_p, 1)
+        res = banque.payer(joueur_p, 1)
+        print(f"[Joueur {joueur_p.id+1}] ({self.nom}) La banque vous donne {res}$")

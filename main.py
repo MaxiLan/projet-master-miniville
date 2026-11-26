@@ -1,7 +1,7 @@
 from jeu import Jeu
 
 print("Une nouvelle partie commence...")
-nb_joueurs = 4  # int(input("Nombre de joueurs (entre 2 et 4): "))
+nb_joueurs = int(input("Nombre de joueurs (entre 2 et 4): "))
 
 jeu = Jeu(nb_joueurs)
 # i = 1 # nombre limité de tours pour l'instant
